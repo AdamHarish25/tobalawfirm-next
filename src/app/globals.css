@@ -1,26 +1,67 @@
-@import "tailwindcss";
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
 
-:root {
-  --background: #ffffff;
-  --foreground: #171717;
+/* Styling dari Accordion.css */
+.accordion {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
 }
-
-@theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+.accordion-section {
+  border-radius: 4px;
+  overflow: hidden;
 }
-
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
+.accordion-header {
+  border-bottom: 1px rgba(255, 255, 255, 0.465) solid;
+  padding: 30px 10px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  cursor: pointer;
+  width: 100%;
+}
+.accordion-arrow {
+  height: fit-content;
+  padding: 10px;
+  border-radius: 9999px;
+  background-color: white;
+  color: black;
+  transition: transform 0.2s ease-in-out;
+}
+.accordion-headerIcon {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+  color: white;
+  font-weight: 700;
+  font-size: 40px;
+}
+@media screen and (max-width: 768px) {
+  .accordion-headerIcon {
+    font-size: 30px;
   }
 }
-
-body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+.accordion-icon {
+  padding: 15px;
+  border-radius: 9999px;
+  background-color: white;
+  color: black;
+  font-size: 25px;
+}
+.accordion-arrow.open {
+  transform: rotate(180deg);
+}
+.accordion-header.active {
+  border-bottom: 2px white solid;
+}
+.accordion-content {
+  max-height: 0;
+  overflow: hidden;
+  opacity: 0;
+  transition: opacity 0.1s ease-in-out;
+}
+.accordion-content.open {
+  max-height: fit-content;
+  opacity: 1;
 }
