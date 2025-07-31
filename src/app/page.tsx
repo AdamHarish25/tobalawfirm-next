@@ -4,13 +4,14 @@
 import React, { useState, useEffect } from 'react';
 import { useRouter } from "next/navigation";
 import { Database } from "@/Database/WholeData";
-import { FaChevronRight, FaStar, FaCompass, FaWallet, FaHandshake, FaClock, FaShieldAlt } from "react-icons/fa";
+import { FaChevronRight } from "react-icons/fa";
 import Tabs from "@/components/Tabs/Tabs";
 import Accordion from "@/components/Accordion/Accordion";
 import Link from "next/link";
 import { collection, getDocs, query, where, orderBy, limit } from "firebase/firestore";
 import { db } from "@/firebase";
 import Navbar from '@/components/Navbar';
+import Image from 'next/image';
 
 interface Service {
     id: string;
@@ -20,7 +21,7 @@ interface Service {
 
 const Datas = Database.HomeData;
 
-const AccordionChild = ({ children, header, icon }: { children: React.ReactNode, header: string, icon: React.ReactNode }) => (
+const AccordionChild = ({ children }: { children: React.ReactNode, header: string, icon: React.ReactNode }) => (
     <>{children}</>
 );
 
@@ -60,7 +61,7 @@ const HomePage_2 = () => {
                         <p>{Data.button.title}</p> <FaChevronRight />
                     </button>
                 </div>
-                <img src={Data.img} alt={Data.title} className="grayscale h-auto w-full max-w-md lg:max-w-fit lg:h-[500px] rounded-lg order-1 lg:order-2" />
+                <Image src={Data.img} alt={Data.title} width={500} height={500} className="grayscale h-auto w-full max-w-md lg:max-w-fit lg:h-[500px] rounded-lg order-1 lg:order-2" />
             </div>
         </div>
     );

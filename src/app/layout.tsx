@@ -6,7 +6,6 @@ import "./globals.css";
 import { AuthProvider } from "@/Core/Authprovider"; // Path diupdate
 import { Toaster } from "sonner";
 import Script from "next/script";
-import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import FloatingWhatsAppButton from "@/components/WaButton";
 

@@ -4,7 +4,6 @@
 import { FaChevronRight } from "react-icons/fa";
 import { Database } from "@/Database/WholeData";
 import { useRouter } from "next/navigation";
-import Link from "next/link";
 import React from 'react';
 import Head from 'next/head';
 import Image from 'next/image';
@@ -31,7 +30,7 @@ const TeamPage_2 = () => {
                         <p>{Data.button.title}</p> <FaChevronRight />
                     </button>
                 </div>
-                <img src={Data.img} alt="Tim Toba Lawfirm" className="grayscale h-auto w-full max-w-md lg:max-w-fit lg:h-[500px] rounded-lg order-1 lg:order-2" />
+                <Image src={Data.img} alt="Tim Toba Lawfirm" sizes="(max-width: 768px) 100vw, (min-width: 768px) 50vw" width={500} height={500} className="grayscale h-auto w-full max-w-md lg:max-w-fit lg:h-[500px] rounded-lg order-1 lg:order-2" />
             </div>
         </div>
     );

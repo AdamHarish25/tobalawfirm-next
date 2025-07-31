@@ -8,7 +8,7 @@ import { signOut } from "firebase/auth";
 import { auth, db } from "@/firebase";
 import AdminArticleList from "@/components/admin/AdminArticleList";
 import AdminServiceList from "@/components/admin/AdminServiceList";
-import { collection, deleteDoc, doc, getDocs, orderBy, query, updateDoc } from "firebase/firestore";
+import { collection, deleteDoc, doc, DocumentData, getDocs, orderBy, query, updateDoc } from "firebase/firestore";
 import { toast } from "sonner";
 import { useAuth } from "@/Core/Authprovider";
 import Head from "next/head";
@@ -17,8 +17,8 @@ export default function DashboardPage() {
   const router = useRouter();
   const { currentUser, loading: authLoading } = useAuth();
 
-  const [articles, setArticles] = useState<any[]>([]);
-  const [services, setServices] = useState<any[]>([]);
+  const [articles, setArticles] = useState<DocumentData[]>([]); // Ganti any[]
+  const [services, setServices] = useState<DocumentData[]>([]); // Ganti any[]
   const [loadingData, setLoadingData] = useState(true);
 
   const fetchData = async () => {
@@ -62,7 +62,7 @@ export default function DashboardPage() {
         await deleteDoc(doc(db, "articles", id));
         toast.success("Article deleted successfully!");
         fetchData();
-      } catch (error) { toast.error("Failed to delete article."); }
+      } catch (error) { console.error("Failed to delete article:", error); toast.error("Failed to delete article."); }
     }
   };
   const handleTogglePublish = async (id: string, newStatus: boolean) => {
@@ -70,7 +70,7 @@ export default function DashboardPage() {
       await updateDoc(doc(db, "articles", id), { isPublished: newStatus });
       toast.success(`Article status updated to ${newStatus ? "Published" : "Draft"}.`);
       fetchData();
-    } catch (error) { toast.error("Failed to update status."); }
+    } catch (error) { console.error("Failed to update status:", error); toast.error("Failed to update status."); }
   };
   const handleLogout = async () => {
     try {

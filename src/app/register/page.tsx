@@ -7,6 +7,7 @@ import { useRouter } from "next/navigation";
 import { createUserWithEmailAndPassword } from "firebase/auth";
 import { auth } from "@/firebase";
 import Head from 'next/head';
+import { FirebaseError } from "firebase/app";
 
 export default function RegisterPage() {
   const [email, setEmail] = useState("");
@@ -23,8 +24,12 @@ export default function RegisterPage() {
     try {
       await createUserWithEmailAndPassword(auth, email, password);
       router.push("/login");
-    } catch (err: any) {
-      setError(err.message);
+    } catch (err) {
+      if (err instanceof FirebaseError) { // Type guard
+        setError(err.message);
+      } else {
+        setError("An unknown error occurred.");
+      }
     } finally {
       setLoading(false);
     }

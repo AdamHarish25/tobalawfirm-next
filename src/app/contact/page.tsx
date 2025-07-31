@@ -3,7 +3,7 @@
 
 import React from 'react';
 import Head from 'next/head';
-import { FaWhatsapp, FaEnvelope, FaMapMarkerAlt } from 'react-icons/fa';
+import { FaWhatsapp, FaMapMarkerAlt } from 'react-icons/fa';
 import Navbar from '@/components/Navbar';
 
 const ContactCard = ({ icon, title, text, link, buttonText }: { icon: React.ReactNode, title: string, text: string, link: string, buttonText: string }) => (
