@@ -1,11 +1,12 @@
-// src/app/service/page.tsx (FINAL DENGAN LAYOUT KONSISTEN)
+// src/app/service/page.tsx (FINAL)
 
 import { collection, getDocs, orderBy, query, where } from 'firebase/firestore';
 import { db } from '@/firebase';
-import Link from 'next/link';
 import type { Metadata } from 'next';
+import ServiceListView from '@/components/service/ListView'; // Import komponen client yang baru
 import Navbar from '@/components/Navbar';
 
+// Tipe data untuk layanan
 interface Service {
   id: string;
   title: string;
@@ -13,7 +14,8 @@ interface Service {
   subtitle?: string;
 }
 
-async function getServices(): Promise<Service[]> {
+// Fungsi untuk fetch data awal di server
+async function getInitialServices(): Promise<Service[]> {
   try {
     const servicesRef = collection(db, "services");
     const q = query(servicesRef, where("isPublished", "==", true), orderBy("title", "asc"));
@@ -26,7 +28,7 @@ async function getServices(): Promise<Service[]> {
       subtitle: doc.data().subtitle,
     }));
   } catch (error) {
-    console.error("Error fetching services:", error);
+    console.error("Error fetching initial services:", error);
     return [];
   }
 }
@@ -36,8 +38,9 @@ export const metadata: Metadata = {
   description: 'Kami menyediakan berbagai layanan hukum untuk memenuhi kebutuhan Anda',
 };
 
+// Komponen Halaman Server (Async)
 export default async function ServicePage() {
-  const services = await getServices();
+  const initialServices = await getInitialServices();
 
   return (
     <div className="bg-dark-white min-h-screen text-white">
@@ -46,29 +49,10 @@ export default async function ServicePage() {
           Layanan Kami
         </h1>
       </header>
-      <Navbar/>
-      
-      <div className="w-full md:container mx-auto px-4 lg:px-8 py-16 lg:py-24">
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 place-items-start gap-x-8 gap-y-12">
-            {services.length > 0 ? (
-            services.map((service, index) => (
-                <Link href={`/layanan/${service.slug}`} key={service.id} className="space-y-5 w-full h-full group bg-gray-600/50 hover:bg-gray-600 transition-colors duration-300 rounded-lg p-5 flex flex-col items-start text-start cursor-pointer">
-                    <div className="p-5 w-fit grid place-items-center font-Playfair_Display font-bold rounded-tl-lg rounded-br-lg bg-yellow-500 text-black text-2xl relative">
-                        <h1 className="absolute">{index + 1}</h1>
-                    </div>
-                    <h4 className="text-xl font-semibold font-Playfair_Display group-hover:text-yellow-500 transition-colors">
-                        {service.title}
-                    </h4>
-                    {service.subtitle && <p className="text-lg text-white/60">{service.subtitle}</p>}
-                </Link>
-            ))
-            ) : (
-            <p className="col-span-full text-center text-gray-400">
-                Saat ini belum ada layanan yang dipublikasikan.
-            </p>
-            )}
-        </div>
-      </div>
+      <Navbar />
+
+      {/* Halaman Server me-render Komponen Client dan memberikan data awal sebagai props */}
+      <ServiceListView initialServices={initialServices} />
     </div>
   );
 }
