@@ -31,7 +31,7 @@ export default function ServiceView({ service: initialService }: ServiceViewProp
     // State untuk data layanan, diinisialisasi dengan data dari server
     const [service, setService] = useState<Service>(initialService);
 
-    const waMe = "https://wa.me/628111072535";
+    const waMe = "https://wa.me/6281118414832";
 
     // Efek untuk menandai bahwa komponen sudah berjalan di client (untuk modal)
     useEffect(() => {

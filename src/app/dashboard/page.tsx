@@ -11,7 +11,6 @@ import AdminServiceList from "@/components/admin/AdminServiceList";
 import { collection, deleteDoc, doc, DocumentData, getDocs, orderBy, query, updateDoc } from "firebase/firestore";
 import { toast } from "sonner";
 import { useAuth } from "@/Core/Authprovider";
-import Head from "next/head";
 
 export default function DashboardPage() {
   const router = useRouter();
@@ -97,11 +96,7 @@ export default function DashboardPage() {
   }
 
   return (
-    <>
-      <Head>
-        <title>Dashboard - Toba Lawfirm</title>
-      </Head>
-      <div className="min-h-screen bg-dark-gray text-white p-8">
+    <div className="min-h-screen bg-dark-gray text-white p-8">
         <div className="max-w-4xl mx-auto">
           <header className="flex justify-between items-center mb-10">
             <h1 className="text-3xl font-bold font-Playfair_Display">TobaLaw Dashboard</h1>
@@ -123,7 +118,6 @@ export default function DashboardPage() {
             <AdminServiceList services={services} loading={loadingData} onEdit={handleEditService} onDelete={handleDeleteService} onTogglePublish={handleToggleServicePublish} />
           </section>
         </div>
-      </div>
-    </>
+    </div>
   );
 }

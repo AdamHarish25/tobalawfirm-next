@@ -1,4 +1,4 @@
-// src/components/Navbar.jsx (FINAL & HYDRATION-SAFE)
+// src/components/Navbar.jsx (PHASE 1 - CSS-first responsive, no JS resize)
 'use client';
 
 import { AiOutlineClose, AiOutlineMenu } from "react-icons/ai";
@@ -12,38 +12,15 @@ const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
   const router = useRouter();
   const pathname = usePathname();
-  
-  // LANGKAH 1: State untuk melacak apakah komponen sudah di-mount di client
-  const [isClient, setIsClient] = useState(false);
-  
-  // LANGKAH 2: useEffect untuk mengubah state setelah komponen di-mount
+
+  // Tutup sidebar otomatis saat pindah halaman
   useEffect(() => {
-    setIsClient(true);
-  }, []);
-
-  const [windowWidth, setWindowWidth] = useState(typeof window !== 'undefined' ? window.innerWidth : 0);
-
-  useEffect(() => {
-    if (typeof window === 'undefined') return;
-
-    const handleResize = () => setWindowWidth(window.innerWidth);
-    window.addEventListener('resize', handleResize);
-    
-    // Panggil sekali saat mount untuk nilai awal
-    handleResize(); 
-    
-    return () => window.removeEventListener('resize', handleResize);
-  }, []);
-
-  useEffect(() => {
-    if (isOpen && windowWidth >= 1280) {
-      setIsOpen(false);
-    }
-  }, [windowWidth, isOpen]);
+    setIsOpen(false);
+  }, [pathname]);
 
 
   const className = {
-    container: "w-full absolute top-0 inset-x-0 px-10 z-40 py-4 font-Roboto",
+    container: "w-full fixed top-0 inset-x-0 px-10 z-40 py-4 font-Roboto bg-black/70 backdrop-blur-md border-b border-white/10",
     mobile: "w-full flex items-center justify-between gap-10",
     desktop: "w-full grid grid-cols-3 place-items-center text-white gap-10",
     logo: "w-16 h-16 rounded-lg",
@@ -60,71 +37,66 @@ const Navbar = () => {
 
   const Data = Database.NavbarData;
 
-  // LANGKAH 3: Tunda rendering kondisional sampai kita tahu kita ada di client
-  if (!isClient) {
-    // Render placeholder atau null selama SSR untuk menghindari ketidakcocokan
-    // Render versi desktop sebagai default yang aman jika perlu
-    return (
-        <div className={className.container}>
-            <div className={className.desktop}>
-                <Link href="/">
-                    <Image src={Data.logo} alt="Toba Lawfirm Logo" width={64} height={64} className={className.logo} priority />
-                </Link>
-                <ul className={className.navigationList}>
-                    {Data.navigateList.map((data) => (<li key={data.link}></li>))}
-                </ul>
-                <div className="flex items-center gap-8 text-white/70"></div>
-            </div>
-        </div>
-    );
-  }
-
   return (
     <div className={className.container}>
-      {windowWidth < 1280 ? (
-        // RENDER TAMPILAN MOBILE
-        <div className={className.mobile}>
-          <Link href="/">
-            <Image src={Data.logo} alt="Toba Lawfirm Logo" width={64} height={64} className={className.logo} priority />
-          </Link>
-          <div className={className.triggerBox}>
+      {/* TAMPILAN MOBILE: visible di bawah lg (1280px, sama seperti sebelumnya), hidden di desktop */}
+      <div className={`${className.mobile} lg:hidden`}>
+        <Link href="/">
+          <Image src={Data.logo} alt="Toba Lawfirm Logo" width={64} height={64} className={className.logo} priority />
+        </Link>
+        <div className={className.triggerBox}>
+          {Data.button.external ? (
+            <a href={Data.button.link} target="_blank" rel="noopener noreferrer" className={className.contactButton}>
+              <div className={className.icon}>{Data.button.icon}</div>
+              <p>{Data.button.title}</p>
+            </a>
+          ) : (
             <button onClick={() => router.push(Data.button.link)} className={className.contactButton}>
               <div className={className.icon}>{Data.button.icon}</div>
               <p>{Data.button.title}</p>
             </button>
-            <button onClick={() => setIsOpen(!isOpen)} className={className.sidebarTrigger}>
-              <AiOutlineMenu />
-            </button>
-          </div>
+          )}
+          <button onClick={() => setIsOpen(!isOpen)} className={className.sidebarTrigger} aria-label="Buka menu navigasi">
+            <AiOutlineMenu />
+          </button>
         </div>
-      ) : (
-        // RENDER TAMPILAN DESKTOP
-        <div className={className.desktop}>
-          <Link href="/">
-            <Image src={Data.logo} alt="Toba Lawfirm Logo" width={64} height={64} className={className.logo} priority />
-          </Link>
-          <ul className={className.navigationList}>
-            {Data.navigateList.map((data) => (
-              <li key={data.link}>
-                <Link href={data.link} className={`${className.navigationMenu} ${pathname === data.link ? "text-white border-b-2" : ""}`}>
-                  {data.title}
-                </Link>
-              </li>
-            ))}
-          </ul>
-          <div className="flex items-center gap-8 text-white/70 group">
+      </div>
+      {/* TAMPILAN DESKTOP: hidden di mobile, grid di lg+ */}
+      <div className={`${className.desktop} hidden lg:grid`}>
+        <Link href="/">
+          <Image src={Data.logo} alt="Toba Lawfirm Logo" width={64} height={64} className={className.logo} priority />
+        </Link>
+        <ul className={className.navigationList}>
+          {Data.navigateList.map((data) => (
+            <li key={data.link}>
+              <Link href={data.link} className={`${className.navigationMenu} ${pathname === data.link ? "text-white border-b-2" : ""}`}>
+                {data.title}
+              </Link>
+            </li>
+          ))}
+        </ul>
+        <div className="flex items-center gap-6 text-white/70 group">
+          <a href="tel:+6281118414832" className="hidden xl:block text-sm text-white/70 hover:text-white transition-colors">
+            +62 811-1841-4832
+          </a>
+          {Data.button.external ? (
+            <a href={Data.button.link} target="_blank" rel="noopener noreferrer" className={className.contactButton}>
+              <div className={className.icon}>{Data.button.icon}</div>
+              <p>{Data.button.title}</p>
+            </a>
+          ) : (
             <button onClick={() => router.push(Data.button.link)} className={className.contactButton}>
               <div className={className.icon}>{Data.button.icon}</div>
               <p>{Data.button.title}</p>
             </button>
-            <Link className="text-white/70 invisible group-hover:visible group-hover:text-white text-sm mx-2 hover:underline" href="/login">
-              Login
-            </Link>
-          </div>
+          )}
+          <Link className="text-white/70 invisible group-hover:visible group-hover:text-white text-sm mx-2 hover:underline" href="/login">
+            Login
+          </Link>
         </div>
-      )}
+      </div>
       <aside className={className.sidebar}>
-        <button onClick={() => setIsOpen(!isOpen)} className={className.closeButton}>
+        <button onClick={() => setIsOpen(!isOpen)} className={className.closeButton} aria-label="Tutup menu navigasi">
           <AiOutlineClose />
         </button>
         <ul className="space-y-5">

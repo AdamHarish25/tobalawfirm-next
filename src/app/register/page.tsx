@@ -6,7 +6,6 @@ import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { createUserWithEmailAndPassword } from "firebase/auth";
 import { auth } from "@/firebase";
-import Head from 'next/head';
 import { FirebaseError } from "firebase/app";
 
 export default function RegisterPage() {
@@ -36,12 +35,7 @@ export default function RegisterPage() {
   };
 
   return (
-    <>
-      <Head>
-        <title>Register - Toba Lawfirm</title>
-        <meta name="description" content="Daftar sebagai admin Toba Lawfirm untuk mengelola konten dan layanan." />
-      </Head>
-      <div className="min-h-screen bg-dark-white flex items-center justify-center">
+    <div className="min-h-screen bg-dark-white flex items-center justify-center">
         <Link href="/" className="absolute top-4 left-4 text-yellow-500 hover:text-yellow-400">
           &lt; Kembali ke Homepage
         </Link>
@@ -71,7 +65,6 @@ export default function RegisterPage() {
             </button>
           </form>
         </div>
-      </div>
-    </>
+    </div>
   );
 }

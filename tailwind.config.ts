@@ -3,11 +3,12 @@
 import type { Config } from "tailwindcss";
 
 const config: Config = {
-  important: true,
   content: [
     // Path yang benar dan lebih spesifik untuk Next.js App Router
     "./src/app/**/*.{js,ts,jsx,tsx,mdx}",
-    "./src/components/**/*.{js,ts,jsx,tsx,mdx}", 
+    "./src/components/**/*.{js,ts,jsx,tsx,mdx}",
+    "./src/Core/**/*.{js,ts,jsx,tsx,mdx}",
+    "./src/Database/**/*.{js,ts,jsx,tsx,mdx}",
   ],
   theme: {
     screens: { // Screens Anda sudah benar, kita salin langsung
@@ -35,6 +36,12 @@ const config: Config = {
       colors: {
         "dark-gray": "#282a2d",
         "dark-white": "#1b1c1e",
+        // PHASE 2: gold premium pengganti yellow-500 neon (migrasi bertahap per section)
+        gold: {
+          DEFAULT: "#C9A86A",
+          soft: "#E7D3A7",
+          deep: "#A8823F",
+        },
       },
       backgroundImage: {
         // PENTING: Pindahkan gambar ke folder `public/images/`
