@@ -76,13 +76,8 @@ const Navbar = () => {
           ))}
         </ul>
         <div className="flex items-center gap-6 text-white/70 group">
-<<<<<<< HEAD
           <a href="tel:+6281118414832" className="hidden xl:block text-sm text-white/70 hover:text-white transition-colors">
             +62 811-1841-4832
-=======
-          <a href="tel:+628111072535" className="hidden xl:block text-sm text-white/70 hover:text-white transition-colors">
-            +62 811-1072-535
->>>>>>> 381c9d69ee4128c4869f74fd5ad2fc8c498f87e2
           </a>
           {Data.button.external ? (
             <a href={Data.button.link} target="_blank" rel="noopener noreferrer" className={className.contactButton}>

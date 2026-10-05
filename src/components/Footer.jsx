@@ -72,19 +72,11 @@ const Footer = () => {
             <h2 className={className.title}>Konsultasi Gratis</h2>
             <p className={className.paragraph}>Ceritakan kebutuhan hukum Anda. Kami respon di jam kerja, tanpa biaya awal.</p>
             <div className="flex flex-col gap-3">
-<<<<<<< HEAD
               <a href="https://wa.me/6281118414832?text=Halo%2C%20saya%20ingin%20konsultasi%20gratis." target="_blank" rel="noopener noreferrer" className="inline-block text-center bg-gold text-black font-semibold text-sm py-3 px-6 rounded hover:bg-gold-soft transition-colors">
                 Chat WhatsApp
               </a>
               <a href="tel:+6281118414832" className="inline-block text-center border border-white/30 text-white text-sm py-3 px-6 rounded hover:bg-white hover:text-black transition-colors">
                 +62 811-1841-4832
-=======
-              <a href="https://wa.me/628111072535?text=Halo%2C%20saya%20ingin%20konsultasi%20gratis." target="_blank" rel="noopener noreferrer" className="inline-block text-center bg-gold text-black font-semibold text-sm py-3 px-6 rounded hover:bg-gold-soft transition-colors">
-                Chat WhatsApp
-              </a>
-              <a href="tel:+628111072535" className="inline-block text-center border border-white/30 text-white text-sm py-3 px-6 rounded hover:bg-white hover:text-black transition-colors">
-                +62 811-1072-535
->>>>>>> 381c9d69ee4128c4869f74fd5ad2fc8c498f87e2
               </a>
             </div>
           </div>
