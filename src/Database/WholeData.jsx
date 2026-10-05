@@ -17,11 +17,7 @@ const teamMember3 = "/images/Team/member3.jpg";
 
 // Nomor WA pusat + builder link WA dengan pesan prefilled.
 // Semua CTA kontak pakai ini agar 1 pintu dan pesannya kontekstual.
-<<<<<<< HEAD
 export const WA_NUMBER = "6281118414832";
-=======
-export const WA_NUMBER = "628111072535";
->>>>>>> 381c9d69ee4128c4869f74fd5ad2fc8c498f87e2
 export const waLink = (message) =>
   `https://wa.me/${WA_NUMBER}?text=${encodeURIComponent(message)}`;
 
