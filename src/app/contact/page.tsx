@@ -30,7 +30,7 @@ const ContactCard = ({ icon, title, text, link, buttonText }: { icon: React.Reac
 export default function ContactPage() {
   const address = "Madison Square SHC 2/51 kota wisata, Gn. putri, Bogor, Jawa Barat 16720";
   const mapEmbedUrl = `https://www.google.com/maps/embed?pb=!1m14!1m12!1m3!1d247.8331064186213!2d106.96137559664943!3d-6.351343323943316!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!5e0!3m2!1sen!2sid!4v1751106576584!5m2!1sen!2sid`;
-  const waMe = "https://wa.me/628111072535";
+  const waMe = "https://wa.me/6281118414832";
 
   return (
     <>

@@ -17,7 +17,11 @@ const teamMember3 = "/images/Team/member3.jpg";
 
 // Nomor WA pusat + builder link WA dengan pesan prefilled.
 // Semua CTA kontak pakai ini agar 1 pintu dan pesannya kontekstual.
+<<<<<<< HEAD
+export const WA_NUMBER = "6281118414832";
+=======
 export const WA_NUMBER = "628111072535";
+>>>>>>> 381c9d69ee4128c4869f74fd5ad2fc8c498f87e2
 export const waLink = (message) =>
   `https://wa.me/${WA_NUMBER}?text=${encodeURIComponent(message)}`;
 
@@ -63,8 +67,8 @@ export const Database = {
         "Madison Square SHC 2/51 kota wisata, Gn. putri, Bogor, Jawa Barat 16720",
       list: [
         {
-          title: "+62 811-1072-535",
-          link: "https://wa.me/628111072535",
+          title: "+62 811-1841-4832",
+          link: "https://wa.me/6281118414832",
         },
         {
           title: "tobalawfirm01@tobalaw.my.id",

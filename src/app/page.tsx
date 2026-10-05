@@ -324,11 +324,19 @@ const HomePage_7 = () => (
             </p>
             <LeadForm source="homepage-cta" />
             <div className="flex flex-col xs:flex-row items-center justify-center gap-4">
+<<<<<<< HEAD
+                <a href="https://wa.me/6281118414832?text=Halo%2C%20saya%20ingin%20konsultasi%20gratis." target="_blank" rel="noopener noreferrer" className="inline-block bg-gold text-black font-bold text-base py-4 px-8 rounded hover:bg-gold-soft transition-colors duration-300">
+                    Chat WhatsApp
+                </a>
+                <a href="tel:+6281118414832" className="inline-block border border-white/30 text-white font-semibold text-base py-4 px-8 rounded hover:bg-white hover:text-black transition-colors duration-300">
+                    +62 811-1841-4832
+=======
                 <a href="https://wa.me/628111072535?text=Halo%2C%20saya%20ingin%20konsultasi%20gratis." target="_blank" rel="noopener noreferrer" className="inline-block bg-gold text-black font-bold text-base py-4 px-8 rounded hover:bg-gold-soft transition-colors duration-300">
                     Chat WhatsApp
                 </a>
                 <a href="tel:+628111072535" className="inline-block border border-white/30 text-white font-semibold text-base py-4 px-8 rounded hover:bg-white hover:text-black transition-colors duration-300">
                     +62 811-1072-535
+>>>>>>> 381c9d69ee4128c4869f74fd5ad2fc8c498f87e2
                 </a>
             </div>
         </div>

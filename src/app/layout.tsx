@@ -74,7 +74,7 @@ export default function RootLayout({
           </main>
           <Footer />
           <FloatingWhatsAppButton
-            phoneNumber="628111072535"
+            phoneNumber="6281118414832"
             message="Halo, saya tertarik dengan layanan Anda. Bisa berikan info lebih lanjut?"
           />
         </AuthProvider>
