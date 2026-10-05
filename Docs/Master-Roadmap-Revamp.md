@@ -249,6 +249,11 @@
 - Upgrade `next 15.4.4 → 15.5.27` + `eslint-config-next` sejajar (tetap di major 15, tanpa lompat ke 16). React 19.1.0 tidak diubah.
 - Verifikasi: `tsc` bersih, `build` hijau 15 rute. Homepage 124→127 kB (+3 kB framework), ISR tetap. Silakan redeploy Netlify.
 
+**INSIDEN deploy 2026-10-05 (merge conflict ke-push, build Netlify gagal):**
+- Penyebab: `git pull` membuat merge commit `50cb5e1` yang meng-commit marker konflik (`<<<<<<< HEAD`) di 5 file (nomor WA lama vs baru) — Netlify ikut build kode rusak itu.
+- Perbaikan: resolve semua hunk (sisi nomor baru dipertahankan), verifikasi `grep` marker + nomor lama = nol, `tsc` + `build` hijau, commit `0938559` + push normal.
+- Aturan: JANGAN `git pull` saat branch divergen karena amend — pakai `fetch` + periksa dulu, atau `pull --rebase`. Jangan pernah push/commit file bermarker (cek `grep -r "<<<<<<<" src/` sebelum push).
+
 =======
 >>>>>>> 381c9d69ee4128c4869f74fd5ad2fc8c498f87e2
 **Scope / Tasks:**
