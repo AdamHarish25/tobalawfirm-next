@@ -5,7 +5,6 @@ import { FaChevronRight } from "react-icons/fa";
 import { Database } from "@/Database/WholeData";
 import { useRouter } from "next/navigation";
 import React from 'react';
-import Head from 'next/head';
 import Image from 'next/image';
 import Navbar from "@/components/Navbar";
 
@@ -64,10 +63,6 @@ const TeamPage_3 = () => (
 export default function TeamPage() {
     return (
         <div className="w-full font-Roboto text-white bg-dark-white pt-24">
-            <Head>
-                <title>Tim Kami - Toba Lawfirm</title>
-                <meta name="description" content="Lawfirm yang baik memiliki tim yang solid, berpengalaman, dan profesional. Pelajari lebih lanjut tentang tim kami di Toba Lawfirm." />
-            </Head>
             <Navbar />
             <TeamPage_1 />
             <TeamPage_2 />

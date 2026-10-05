@@ -15,6 +15,12 @@ const teamMember1 = '/images/Team/team1.jpeg';
 const teamMember2 = "/images/Team/team2.jpeg";
 const teamMember3 = "/images/Team/member3.jpg";
 
+// Nomor WA pusat + builder link WA dengan pesan prefilled.
+// Semua CTA kontak pakai ini agar 1 pintu dan pesannya kontekstual.
+export const WA_NUMBER = "628111072535";
+export const waLink = (message) =>
+  `https://wa.me/${WA_NUMBER}?text=${encodeURIComponent(message)}`;
+
 export const Database = {
   NavbarData: {
     navigateList: [
@@ -45,7 +51,8 @@ export const Database = {
     button: {
       icon: <AiOutlineMessage />,
       title: "Hubungi Kami",
-      link: "/contact",
+      link: waLink("Halo Toba Law Firm, saya ingin konsultasi hukum. Bisa berikan info lebih lanjut?"),
+      external: true,
     },
   },
 
@@ -102,22 +109,45 @@ export const Database = {
         },
       ],
     },
+
+    hours: {
+      title: "Jam Operasional",
+      list: [
+        "Senin – Jumat: 09.00 – 17.00",
+        "Sabtu: 09.00 – 13.00",
+        "Minggu & libur: via WhatsApp",
+      ],
+    },
+
+    bottom: {
+      copyright: "© 2026 Toba Law Firm. Hak cipta dilindungi.",
+      list: [
+        { title: "Kebijakan Privasi", link: "/contact" },
+        { title: "Syarat & Ketentuan", link: "/contact" },
+      ],
+    },
   },
 
   HomeData: {
     page_1: {
-      title: "Penuhi semua kebutuhan investigasi dan litigasi Anda",
+      title: "Pengacara Bisnis & Litigasi Terpercaya di Bogor",
       subtitle:
-        "Kantor Hukum kami terdiri dari tim advokat & legal consultant mempunyai integritas tinggi yang mampu dan berpengalaman menangani berbagai perkara hukum.",
+        "Didampingi advokat berpengalaman untuk sengketa bisnis, kontrak, dan perkara perdata. Konsultasi awal gratis, respon cepat via WhatsApp.",
       button: [
         {
-          link: "/service",
-          title: "Layanan Kami",
+          link: waLink("Halo Toba Law Firm, saya ingin konsultasi gratis mengenai kasus saya."),
+          title: "Konsultasi Gratis",
+          external: true,
         },
         {
-          link: "/contact",
-          title: "Kontak Kami",
+          link: "/service",
+          title: "Lihat Layanan",
         },
+      ],
+      trust: [
+        "★ 4.9/5 dari klien",
+        "100+ kasus ditangani",
+        "Respon < 5 menit",
       ],
     },
 
@@ -130,9 +160,24 @@ Dengan tim pengacara yang berpengalaman dan berdedikasi, Toba Law Firm siap memb
 Kami memahami bahwa setiap kasus hukum memiliki keunikan dan kompleksitas tersendiri, dan kami berkomitmen untuk memberikan perhatian yang personal dan profesional kepada setiap klien kami. Kami percaya bahwa dengan kerja sama yang erat antara klien dan pengacara, kami dapat mencapai hasil yang terbaik dan memberikan keadilan kepada klien kami.
 
 Toba Law Firm adalah mitra yang dapat diandalkan bagi individu dan perusahaan yang membutuhkan bantuan hukum yang berkualitas dan profesional. Kami siap untuk membantu Anda dalam menyelesaikan kasus hukum Anda dan memberikan solusi yang efektif dan efisien. Hubungi kami hari ini untuk mengetahui lebih lanjut tentang bagaimana kami dapat membantu Anda.`,
+      // PHASE 3: versi ringkas untuk homepage (full subtitle tetap dipakai di /about)
+      excerpt: `Toba Law Firm adalah konsultan hukum yang didirikan pada 2024 untuk memberikan bantuan hukum berkualitas kepada individu dan perusahaan. Kami percaya setiap orang berhak atas keadilan dan perlindungan hukum yang sama.`,
+      points: [
+        "Advokat berpengalaman di litigasi, kontrak, dan hukum bisnis",
+        "Perhatian personal untuk setiap keunikan kasus Anda",
+        "Solusi efektif dan efisien, jalur litigasi maupun non-litigasi",
+        "Komunikasi transparan sejak konsultasi pertama",
+      ],
+      // ANGKA PLACEHOLDER — ganti dengan data riil sebelum pasang iklan
+      stats: [
+        { value: 100, suffix: "+", label: "Kasus Ditangani" },
+        { value: 50, suffix: "+", label: "Klien Percaya" },
+        { value: 15, suffix: "+", label: "Bidang Hukum" },
+        { value: 5, suffix: "+", label: "Tahun Pengalaman" },
+      ],
       button: {
-        link: "/service",
-        title: "Layanan Kami",
+        link: "/about",
+        title: "Selengkapnya Tentang Kami",
       },
 
       img: Profile,
@@ -186,26 +231,33 @@ Toba Law Firm adalah mitra yang dapat diandalkan bagi individu dan perusahaan ya
       tabs: [
         {
           id: 1,
-          tabTitle: "Tipe 1",
-          title: "Klien Tetap",
+          tabTitle: "Pengacara Tetap",
+          title: "Klien Tetap (Retainer)",
           content:
             "Klien (baik perorangan atau perusahaan) yang menunjuk Kantor Kami sebagai pengacara tetap (In House Lawyer) selama jangka waktu tertentu, untuk menangani segala aspek hukum terutama untuk mencegah timbulnya sengketa / masalah hukum.",
+          // HARGA PLACEHOLDER — konfirmasi ke owner sebelum iklan
+          price: "Mulai dari Rp 5 jt/bln",
+          cta: { title: "Minta Penawaran", link: waLink("Halo, saya ingin menanyakan paket pengacara tetap (retainer)."), external: true },
           img: background,
         },
         {
           id: 2,
-          tabTitle: "Tipe 2",
+          tabTitle: "Kasus Insidentil",
           title: "Klien Tidak Tetap",
           content:
             "Klien (baik perorangan atau badan hukum) yang secara insidentil menunjuk Kantor Hukum Kami untuk menangani masalah hukum yang dihadapi baik untuk penyelesaian di luar maupun di dalam pengadilan.",
+          price: "Estimasi per kasus",
+          cta: { title: "Konsultasi Kasus", link: waLink("Halo, saya ingin konsultasi mengenai kasus hukum saya."), external: true },
           img: secretary,
         },
         {
           id: 3,
-          tabTitle: "Tipe 3",
+          tabTitle: "Pendampingan Pengadaan",
           title: "Pendampingan dan Pelayanan Hukum",
           content:
             "Bagi PA / KPA / PPK / ULP / Pejabat Pengadaan / PPHP/ PPSPM / Bendahara / APIP yang sedang mengadapi permasalahan hukum Pengadaan.",
+          price: "Sesuai kebutuhan",
+          cta: { title: "Diskusi Kebutuhan", link: waLink("Halo, saya ingin diskusi pendampingan hukum pengadaan."), external: true },
           img: hammer,
         },
       ],
@@ -251,6 +303,80 @@ Toba Law Firm adalah mitra yang dapat diandalkan bagi individu dan perusahaan ya
 
     page_7: {
       title: "Hubungi Kami",
+    },
+
+    // TESTIMONI PLACEHOLDER — wajib ganti testimoni asli + izin tertulis sebelum iklan
+    page_8: {
+      title: "Kata Mereka Tentang Kami",
+      subtitle: "Kepercayaan klien adalah reputasi kami.",
+      testimonials: [
+        {
+          quote: "Kasus sengketa bisnis kami selesai lebih cepat dari estimasi. Komunikasi jelas di setiap tahap.",
+          name: "H. S.",
+          role: "Direktur, Perusahaan Dagang — Bogor",
+        },
+        {
+          quote: "Didampingi dari somasi sampai sidang. Saya selalu tahu posisi kasus saya.",
+          name: "R. A.",
+          role: "Klien Perdata — Depok",
+        },
+        {
+          quote: "Kontrak-kontrak perusahaan kami sekarang rapi dan aman. Layak jadi retainer tahunan.",
+          name: "M. T.",
+          role: "Owner, Jasa Konstruksi — Jakarta",
+        },
+      ],
+    },
+
+    page_9: {
+      title: "Mudah Memulai",
+      subtitle: "Tiga langkah dari chat pertama sampai kasus ditangani.",
+      steps: [
+        {
+          title: "Chat via WhatsApp",
+          desc: "Ceritakan masalah Anda. Gratis, tanpa komitmen, respon di jam kerja.",
+        },
+        {
+          title: "Analisa & Estimasi",
+          desc: "Kami pelajari dokumen, jelaskan posisi hukum dan estimasi biaya transparan.",
+        },
+        {
+          title: "Pendampingan",
+          desc: "Surat kuasa ditandatangani, tim mulai bekerja dan lapor berkala.",
+        },
+      ],
+      button: { title: "Mulai Langkah 1 — Gratis", link: waLink("Halo, saya ingin mulai konsultasi gratis."), external: true },
+    },
+
+    page_10: {
+      title: "Pertanyaan Umum",
+      subtitle: "Jawaban cepat sebelum Anda menghubungi kami.",
+      faqs: [
+        {
+          q: "Berapa biaya konsultasi awal?",
+          a: "Konsultasi awal via WhatsApp tidak dipungut biaya. Untuk pendalaman dokumen atau meeting, kami beri estimasi transparan di awal — tidak ada biaya siluman.",
+        },
+        {
+          q: "Berapa lama penanganan kasus?",
+          a: "Tergantung jenis perkara. Sengketa sederhana bisa selesai dalam hitungan minggu lewat negosiasi, sedangkan litigasi mengikuti jadwal pengadilan. Estimasi waktu selalu kami sampaikan setelah analisa dokumen.",
+        },
+        {
+          q: "Wilayah mana saja yang dilayani?",
+          a: "Kantor kami di Bogor dan melayani Jabodetabek secara langsung. Untuk luar daerah, pendampingan dimungkinkan secara hybrid setelah asesmen awal.",
+        },
+        {
+          q: "Dokumen apa yang perlu saya siapkan?",
+          a: "Siapkan KTP, kronologi singkat, dan dokumen terkait (kontrak, somasi, putusan, atau bukti komunikasi). Semakin lengkap, semakin cepat analisa kami.",
+        },
+        {
+          q: "Bagaimana sistem retainer untuk perusahaan?",
+          a: "Perusahaan menunjuk kami sebagai pengacara tetap dengan biaya bulanan. Mencakup review kontrak, nasihat berkala, dan prioritas penanganan sengketa.",
+        },
+        {
+          q: "Apakah data dan privasi saya aman?",
+          a: "Ya. Seluruh informasi klien bersifat rahasia dan dilindungi kode etik advokat. Dokumen hanya diakses tim yang menangani kasus Anda.",
+        },
+      ],
     },
   },
 

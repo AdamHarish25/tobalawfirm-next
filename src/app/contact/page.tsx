@@ -1,10 +1,13 @@
-// src/app/contact/page.tsx (FINAL)
-'use client';
-
+// src/app/contact/page.tsx (PHASE 1 - server component + metadata)
 import React from 'react';
-import Head from 'next/head';
+import type { Metadata } from 'next';
 import { FaWhatsapp, FaMapMarkerAlt } from 'react-icons/fa';
 import Navbar from '@/components/Navbar';
+
+export const metadata: Metadata = {
+  title: 'Kontak Kami',
+  description: 'Hubungi Toba Lawfirm untuk konsultasi hukum profesional.',
+};
 
 const ContactCard = ({ icon, title, text, link, buttonText }: { icon: React.ReactNode, title: string, text: string, link: string, buttonText: string }) => (
   <a
@@ -31,10 +34,6 @@ export default function ContactPage() {
 
   return (
     <>
-      <Head>
-        <title>Kontak Kami - Toba Lawfirm</title>
-        <meta name="description" content="Hubungi Toba Lawfirm untuk konsultasi hukum profesional." />
-      </Head>
       <Navbar />
 
       <div className="bg-dark-white min-h-screen text-white font-Roboto">
