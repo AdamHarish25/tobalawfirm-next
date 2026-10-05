@@ -121,6 +121,8 @@ export const Database = {
 
     bottom: {
       copyright: "© 2026 Toba Law Firm. Hak cipta dilindungi.",
+      poweredby: `Powered by WebsiteJokiID Engine`,
+      poweredbyLink: "https://www.websitejoki.my.id",
       list: [
         { title: "Kebijakan Privasi", link: "/contact" },
         { title: "Syarat & Ketentuan", link: "/contact" },
