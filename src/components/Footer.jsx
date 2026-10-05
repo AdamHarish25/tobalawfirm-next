@@ -84,6 +84,7 @@ const Footer = () => {
 
         <div className="w-full px-10 py-5 border-t border-white/10 flex flex-col sm:flex-row items-center justify-between gap-3 text-sm text-white/50">
           <p>{Data.bottom.copyright}</p>
+          <a href={Data.bottom.poweredbyLink} target="_blank" rel="noopener noreferrer">{Data.bottom.poweredby}</a>
           <ul className="flex items-center gap-5 list-none">
             {Data.bottom.list.map((item, idx) => (
               <li key={idx}>
