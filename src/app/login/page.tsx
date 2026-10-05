@@ -6,7 +6,6 @@ import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { signInWithEmailAndPassword } from "firebase/auth";
 import { auth } from "@/firebase";
-import Head from "next/head";
 
 export default function LoginPage() {
   const [email, setEmail] = useState("");
@@ -28,12 +27,7 @@ export default function LoginPage() {
   };
 
   return (
-    <>
-      <Head>
-        <title>Login - Toba Lawfirm</title>
-        <meta name="description" content="Login sebagai admin Toba Lawfirm." />
-      </Head>
-      <div className="min-h-screen bg-dark-white flex items-center justify-center">
+    <div className="min-h-screen bg-dark-white flex items-center justify-center">
         <Link href="/" className="absolute top-4 left-4 text-yellow-500 hover:text-yellow-400">
           &lt; Kembali ke Homepage
         </Link>
@@ -62,7 +56,6 @@ export default function LoginPage() {
             </button>
           </form>
         </div>
-      </div>
-    </>
+    </div>
   );
 }

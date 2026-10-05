@@ -44,7 +44,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en" className={`${playfair.variable} ${poppins.variable} ${roboto.variable}`}>
+    <html lang="id" className={`${playfair.variable} ${poppins.variable} ${roboto.variable}`}>
       <head>
         {/* Google Scripts */}
         <Script async src="https://www.googletagmanager.com/gtag/js?id=AW-17278154266" />

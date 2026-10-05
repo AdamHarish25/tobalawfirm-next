@@ -5,16 +5,12 @@ import { useRouter } from "next/navigation";
 import { Database } from "@/Database/WholeData";
 import { FaChevronRight} from "react-icons/fa";
 import Accordion from "@/components/Accordion/Accordion";
+import AccordionChild from "@/components/Accordion/AccordionChild";
 import React from 'react';
-import Head from 'next/head';
 import Navbar from "@/components/Navbar";
 import Image from "next/image";
 
 const Datas = Database.AboutData;
-
-const AccordionChild = ({ children }: { children: React.ReactNode, header: string, icon: React.ReactNode }) => (
-    <>{children}</>
-);
 
 const AboutPage_1 = () => (
     <div className="w-full pt-48 pb-16 bg-dark-gray text-center text-white">
@@ -63,10 +59,6 @@ const AboutPage_3 = () => (
 export default function AboutPage() {
     return (
         <div className="w-full font-Roboto text-white bg-dark-white">
-            <Head>
-                <title>Tentang Kami - Toba Lawfirm</title>
-                <meta name="description" content="Pelajari tentang Visi, Misi dan Sejarah TobaLawfirm." />
-            </Head>
             <Navbar/>
             <AboutPage_1 />
             <AboutPage_2 />
