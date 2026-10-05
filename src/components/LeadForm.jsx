@@ -7,7 +7,11 @@ import { addDoc, collection, serverTimestamp } from 'firebase/firestore';
 import { db } from '@/firebase';
 import { toast } from 'sonner';
 
+<<<<<<< HEAD
 const WA_NUMBER = '6281118414832';
+=======
+const WA_NUMBER = '628111072535';
+>>>>>>> 381c9d69ee4128c4869f74fd5ad2fc8c498f87e2
 
 const LeadForm = ({ source = 'homepage' }) => {
   const [nama, setNama] = useState('');
