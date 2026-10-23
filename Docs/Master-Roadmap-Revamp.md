@@ -2,13 +2,8 @@
 
 > Dokumen induk sebelum implementasi apapun. Semua perubahan wajib merujuk ke phase di sini. Bahasa: Indonesia. Update dokumen ini tiap phase selesai.
 
-<<<<<<< HEAD
-**Tanggal dibuat:** 2026-10-05 (terakhir diperbarui 2026-10-05)
+**Tanggal dibuat:** 2026-10-05 (terakhir diperbarui 2026-10-23)
 **Repo:** `tobalawfirm-next` — Next.js 15.5.27 + React 19.1 + Tailwind 3.4 + Firebase 12
-=======
-**Tanggal dibuat:** 2026-10-05
-**Repo:** `tobalawfirm-next` — Next.js 15.4.4 + React 19.1 + Tailwind 3.4 + Firebase 12
->>>>>>> 381c9d69ee4128c4869f74fd5ad2fc8c498f87e2
 **Tujuan utama:** Landing page (`/`) sebagai mesin revenue — naikkan konversi WA/Call, kecepatan, SEO lokal, dan kepercayaan.
 **Prinsip:**
 1. Revenue dulu, estetika mengikuti. Setiap perubahan harus menjawab: "apakah ini menambah chat/call?"
@@ -23,15 +18,15 @@
 - SEO: indexed pages, CTR `pengacara bogor`, FAQ rich result
 - Kualitas: 0 TS error, 0 ESLint error, Lighthouse Perf/A11y/SEO ≥ 90
 
-<<<<<<< HEAD
 **Peta file kunci (acuan cepat) — kondisi terkini pasca Phase 3:**
 - `src/app/page.tsx` — homepage 10 section, **server component + ISR 60s** (hero, about ringkas, keunggulan, layanan server, testimoni, alur, klien/tabs, visi-misi, FAQ+JSON-LD, CTA+form)
 - `src/app/layout.tsx` — fonts, GA/Ads, AuthProvider, Footer, WaButton, `lang="id"`
-- `src/components/Navbar.jsx` — fixed sticky + tel + CTA WA (Login tetap hidden admin), `Footer.jsx` — 4 kolom + copyright, `WaButton.jsx` — pesan kontekstual per rute
+- `src/components/Navbar.jsx` — fixed sticky + tel + CTA WA (Login tetap hidden admin). Mobile: header kompak (ikon WA gold + hamburger) + drawer premium gelap (overlay blur, scroll-lock, Escape, stagger, CTA gold + Login di footer drawer); `Footer.jsx` — 4 kolom + copyright, `WaButton.jsx` — pesan kontekstual per rute
 - `src/components/Tabs/Tabs.jsx` (tablist a11y), `Accordion/Accordion.jsx` + `AccordionChild.tsx` (client wrapper wajib), `StatsCounter.jsx`, `Faq/Faq.jsx`, `LeadForm.jsx` + `LeadFormLazy.jsx` (lazy firestore)
-- `src/Database/WholeData.jsx` — konten terpusat + `WA_NUMBER`/`waLink()` + data testimoni/alur/FAQ/stats
+- `src/Database/WholeData.jsx` — konten terpusat + data testimoni/alur/FAQ/stats (import `waLink` dari siteConfig)
+- `src/Database/siteConfig.ts` — **SATU-SATUNYA sumber nomor WA/telp** (`WA_NUMBER`, `TEL_HREF`, `WA_DISPLAY`, `waLink()`). Ubah nomor = edit 1 baris di file ini saja
 - `src/firebase.jsx`, `src/Core/Authprovider.tsx` — TIDAK PERNAH disentuh selama revamp
-- Nomor WA/telp global: **+62 811-1841-4832** (`6281118414832`)
+- Nomor WA/telp global: **+62 811-1841-483** (`628111841483`) — sejak 2026-10-23, terpusat di `siteConfig.ts`
 
 ## Changelog — semua keputusan & follow-up tercatat di sini
 
@@ -43,20 +38,14 @@
 | 2026-10-05 | Nomor WA/telp global diganti ke +62 811-1841-4832 — 15 titik di 7 file (`layout`, `Navbar`, `Footer`, `WholeData`, `LeadForm`, `page`, `contact`, `ServiceView`) + dokumen | ✅ build hijau |
 | 2026-10-05 | HOTFIX CVE-2025-55182: `next` 15.4.4 → 15.5.27 (Netlify memblokir deploy versi rentan). Homepage 124→127 kB | ✅ silakan redeploy |
 | 2026-10-05 | BUG header Accordion kosong di landing (efek Phase 2) — diperbaiki via `AccordionChild.tsx`. Aturan: jangan baca `child.props` dari wrapper Server Component | ✅ |
+| 2026-10-23 | **Sentralisasi nomor kontak** — buat `src/Database/siteConfig.ts` (`WA_NUMBER`, `TEL_HREF`, `WA_DISPLAY`, `waLink()`). Semua hardcode nomor di 8 file (`WholeData`, `LeadForm`, `Navbar`, `Footer`, `layout`, `page`, `contact`, `ServiceView`) → import dari config. Ubah nomor ke depan = 1 file | ✅ build hijau |
+| 2026-10-23 | **Ganti nomor WA/telp** +62 811-1841-4832 → **+62 811-1841-483** (`628111841483`, dari `08111841483`). Hanya edit `WA_NUMBER` di `siteConfig.ts`; tampilan/link auto-derive | ✅ |
+| 2026-10-23 | **Redesign navbar mobile** — header kompak (padding responsif, logo adaptif, CTA jadi ikon gold bulat), drawer premium gelap (tema `dark-white` + aksen gold gradient, overlay blur, item Playfair + stagger, footer: nomor + CTA gold + Login). Scroll body terkunci, Escape close, auto-close pindah rute, `aria-*` | ✅ |
+| 2026-10-23 | **BUGFIX sidebar mobile transparan** — drawer sempat jadi child container navbar (`backdrop-blur-md` membuat containing block untuk `fixed` descendants → positioning relatif ke bar, bukan viewport). Fix: overlay + `<aside>` dikeluarkan ke fragment sibling di luar container navbar | ✅ |
 | OPEN | Ganti angka placeholder (trust strip, stats, testimoni, harga tab) dengan data riil + izin tertulis sebelum pasang iklan | ⏳ owner |
 | OPEN | Buka Firestore rules `allow create` untuk collection `leads` (form tetap jalan via fallback WA tanpa ini) | ⏳ owner + tanpa downtime |
 | OPEN | Kanonis rute `/service` vs `/layanan` (rekomendasi `/layanan`, redirect) | ⏳ owner (Phase 4) |
 | OPEN | Foto tim berwarna + logo klien untuk ganti grayscale/placeholder | ⏳ owner |
-=======
-**Peta file kunci (acuan cepat):**
-- `src/app/page.tsx` — homepage 7 section (semua client saat ini)
-- `src/app/layout.tsx` — fonts, GA/Ads, AuthProvider, Footer, WaButton
-- `src/app/globals.css` — tailwind + accordion CSS manual
-- `src/components/Navbar.jsx`, `Footer.jsx`, `WaButton.jsx`, `Tabs/Tabs.jsx`, `Accordion/Accordion.jsx`
-- `src/Database/WholeData.jsx` — konten statis terpusat
-- `src/firebase.jsx`, `src/Core/Authprovider.tsx`
-- `tailwind.config.ts`, `next.config.ts`, `src/app/service/page.tsx` (sudah server, contoh benar), `src/app/contact/page.tsx` (masih `next/head`, contoh salah)
->>>>>>> 381c9d69ee4128c4869f74fd5ad2fc8c498f87e2
 
 ---
 
@@ -150,11 +139,7 @@
 2. Sticky header + CTA persisten:
    - [x] Navbar `absolute` → `fixed + bg-black/70 backdrop-blur-md border-b` — CTA selalu visible saat scroll.
    - [x] `Login` TETAP hidden (`invisible group-hover:visible`) — keputusan owner 2026-10-05: jalur admin, bukan untuk umum. Tidak diubah.
-<<<<<<< HEAD
-   - [x] Tambah `tel:+6281118414832` (desktop `xl+`) di header. Nomor WA/telp global diganti ke +62 811-1841-4832 (2026-10-05).
-=======
-   - [x] Tambah `tel:+628111072535` (desktop `xl+`) di header.
->>>>>>> 381c9d69ee4128c4869f74fd5ad2fc8c498f87e2
+   - [x] Tambah `tel:` (desktop `xl+`) di header. Nomor WA/telp global diganti ke +62 811-1841-4832 (2026-10-05), lalu +62 811-1841-483 (2026-10-23) via `siteConfig.ts`.
 3. Hero rewrite:
    - [x] H1 `Penuhi semua kebutuhan investigasi...` → `Pengacara Bisnis & Litigasi Terpercaya di Bogor` (keyword + lokasi). Sub 2 kalimat benefit + konsultasi gratis. CTA `text-xs p-4` → `text-sm font-semibold px-8 py-4`. Overlay `bg-black/50` → gradient `from-black/70 via-black/50`. Trust strip 3 item (`★4.9, 100+ kasus, <5 mnt` — GANTI dengan angka riil sebelum iklan!). H1 lain → H2/H3 (1 H1 per page).
 4. Token warna premium:
@@ -243,7 +228,6 @@
 
 **Tujuan:** Naik ke stack 2026 tanpa rewrite besar.
 
-<<<<<<< HEAD
 **HOTFIX keamanan 2026-10-05 (didahulukan dari Phase 5 karena Netlify memblokir deploy):**
 - Netlify menolak deploy: Next.js 15.4.4 terdampak CVE-2025-55182 (RCE kritis, lihat https://ntl.fyi/cve-2025-55182).
 - Upgrade `next 15.4.4 → 15.5.27` + `eslint-config-next` sejajar (tetap di major 15, tanpa lompat ke 16). React 19.1.0 tidak diubah.
@@ -254,8 +238,6 @@
 - Perbaikan: resolve semua hunk (sisi nomor baru dipertahankan), verifikasi `grep` marker + nomor lama = nol, `tsc` + `build` hijau, commit `0938559` + push normal.
 - Aturan: JANGAN `git pull` saat branch divergen karena amend — pakai `fetch` + periksa dulu, atau `pull --rebase`. Jangan pernah push/commit file bermarker (cek `grep -r "<<<<<<<" src/` sebelum push).
 
-=======
->>>>>>> 381c9d69ee4128c4869f74fd5ad2fc8c498f87e2
 **Scope / Tasks:**
 1. [ ] Upgrade `next 15.4.4 → 16.3.x` via `npx @next/codemod`, uji `turbopack`, perbaiki breaking `fetch/cache`
 2. [ ] Migrasi `tailwind 3.4 → 4.3`: `npx @tailwindcss/upgrade`, pindah token ke CSS `@theme` (`gold`, fonts, breakpoints kembali standar `sm/md/lg/xl`), hapus `tailwind.config.ts` jika sudah setara, ganti `@tailwind` directives → `@import "tailwindcss"`
@@ -285,10 +267,9 @@
 3. Dilarang campur phase (misal Phase 1 jangan selipkan redesign hero).
 4. Update checklist di dokumen ini di PR yang sama (centang `[x]`).
 
-<<<<<<< HEAD
 ## Keputusan yang masih butuh input owner (ringkas — detail di Changelog atas)
 
-- [x] Nomor WA & jam operasional resmi → DONE: +62 811-1841-4832 (2026-10-05)
+- [x] Nomor WA & jam operasional resmi → DONE: +62 811-1841-483 (2026-10-23, terpusat di `siteConfig.ts`)
 - [ ] Angka trust riil, stats, testimoni + izin tertulis — jangan pakai dummy di production
 - [ ] Harga `Mulai dari Rp` per layanan — tampilkan atau `Hubungi untuk estimasi`?
 - [ ] Kanonis rute `/service` vs `/layanan` (Phase 4)
@@ -297,17 +278,4 @@
 
 ---
 
-*Status terkini: Phase 0–3 + hotfix keamanan selesai di branch `phase-1-foundation`. Next: Phase 4 (Lighthouse ≥90, WebP/AVIF, sitemap, SEO Bogor).*
-=======
-## Keputusan yang masih butuh input owner
-
-- [ ] Angka trust riil (kasus, rating, tahun) — jangan pakai dummy di production
-- [ ] Harga `Mulai dari Rp` per layanan — tampilkan atau `Hubungi untuk estimasi`?
-- [ ] Kanonis rute: pertahankan `/service` atau `/layanan`? (rekomendasi: `/layanan` untuk SEO ID, redirect `/service`)
-- [ ] Foto tim & testimoni yang boleh publik + izin tertulis
-- [ ] Nomor WA & jam operasional resmi untuk header/footer/schema
-
----
-
-*Next step setelah dokumen ini: isi baseline Phase 0, lalu mulai Phase 1 task #1 (uninstall Bulma).*
->>>>>>> 381c9d69ee4128c4869f74fd5ad2fc8c498f87e2
+*Status terkini: Phase 0–3 + hotfix keamanan + sentralisasi kontak + redesign navbar mobile selesai di branch `phase-1-foundation`. Next: Phase 4 (Lighthouse ≥90, WebP/AVIF, sitemap, SEO Bogor).*

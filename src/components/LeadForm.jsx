@@ -6,8 +6,7 @@ import { useState } from 'react';
 import { addDoc, collection, serverTimestamp } from 'firebase/firestore';
 import { db } from '@/firebase';
 import { toast } from 'sonner';
-
-const WA_NUMBER = '6281118414832';
+import { waLink } from '@/Database/siteConfig';
 
 const LeadForm = ({ source = 'homepage' }) => {
   const [nama, setNama] = useState('');
@@ -17,7 +16,7 @@ const LeadForm = ({ source = 'homepage' }) => {
 
   const toWaUrl = () => {
     const text = `Halo Toba Law Firm, saya ${nama || '(nama)'}. No WA saya ${noWa || '(nomor)'}. Kebutuhan: ${kebutuhan || '(belum diisi)'}. Mohon info konsultasi gratis.`;
-    return `https://wa.me/${WA_NUMBER}?text=${encodeURIComponent(text)}`;
+    return waLink(text);
   };
 
   const handleSubmit = async (e) => {
