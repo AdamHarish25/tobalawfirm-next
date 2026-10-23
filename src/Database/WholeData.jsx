@@ -2,6 +2,7 @@
 
 import { AiOutlineMessage } from "react-icons/ai";
 import { FaClock, FaCompass, FaEnvelope, FaFacebookF, FaHandshake, FaHome, FaInstagram, FaPhone, FaShieldAlt, FaStar, FaWallet, FaYoutube } from "react-icons/fa";
+import { WA_NUMBER, waLink, WA_DISPLAY } from "./siteConfig";
 
 // SEMUA GAMBAR SEKARANG MENJADI STRING PATH DARI FOLDER /public
 const Logo = "/images/Logo.jpg";
@@ -15,11 +16,7 @@ const teamMember1 = '/images/Team/team1.jpeg';
 const teamMember2 = "/images/Team/team2.jpeg";
 const teamMember3 = "/images/Team/member3.jpg";
 
-// Nomor WA pusat + builder link WA dengan pesan prefilled.
-// Semua CTA kontak pakai ini agar 1 pintu dan pesannya kontekstual.
-export const WA_NUMBER = "6281118414832";
-export const waLink = (message) =>
-  `https://wa.me/${WA_NUMBER}?text=${encodeURIComponent(message)}`;
+export { WA_NUMBER, waLink };
 
 export const Database = {
   NavbarData: {
@@ -63,8 +60,8 @@ export const Database = {
         "Madison Square SHC 2/51 kota wisata, Gn. putri, Bogor, Jawa Barat 16720",
       list: [
         {
-          title: "+62 811-1841-4832",
-          link: "https://wa.me/6281118414832",
+          title: WA_DISPLAY,
+          link: waLink(),
         },
         {
           title: "tobalawfirm01@tobalaw.my.id",

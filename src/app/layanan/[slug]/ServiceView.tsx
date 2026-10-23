@@ -9,6 +9,7 @@ import ImageModal from '@/components/ImageModal';
 import { doc, onSnapshot } from 'firebase/firestore'; // Import onSnapshot untuk realtime
 import { db } from '@/firebase';
 import Navbar from '@/components/Navbar';
+import { waLink } from '@/Database/siteConfig';
 
 // Tipe data ini harus cocok dengan yang ada di page.tsx
 interface Service {
@@ -31,7 +32,7 @@ export default function ServiceView({ service: initialService }: ServiceViewProp
     // State untuk data layanan, diinisialisasi dengan data dari server
     const [service, setService] = useState<Service>(initialService);
 
-    const waMe = "https://wa.me/6281118414832";
+    const waMe = waLink();
 
     // Efek untuk menandai bahwa komponen sudah berjalan di client (untuk modal)
     useEffect(() => {

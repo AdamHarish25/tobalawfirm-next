@@ -8,6 +8,7 @@ import { Toaster } from "sonner";
 import Script from "next/script";
 import Footer from "@/components/Footer";
 import FloatingWhatsAppButton from "@/components/WaButton";
+import { WA_NUMBER } from "@/Database/siteConfig";
 
 // Konfigurasi Font
 const playfair = Playfair_Display({
@@ -74,7 +75,7 @@ export default function RootLayout({
           </main>
           <Footer />
           <FloatingWhatsAppButton
-            phoneNumber="6281118414832"
+            phoneNumber={WA_NUMBER}
             message="Halo, saya tertarik dengan layanan Anda. Bisa berikan info lebih lanjut?"
           />
         </AuthProvider>
